@@ -109,5 +109,23 @@ function validateForm() {
     isValid = false;
   }
 
+  // Remove error messages after 3 seconds
+  if (!isValid) {
+    setTimeout(function () {
+      for (var i = 0; i < errorMessages.length; i++) {
+        errorMessages[i].textContent = "";
+      }
+
+      name.style.borderColor = "";
+      employeeid.style.borderColor = "";
+      gender.style.borderColor = "";
+      dob.style.borderColor = "";
+      designation.style.borderColor = "";
+      department.style.borderColor = "";
+      appointmentdate.style.borderColor = "";
+      password.style.borderColor = "";
+    }, 5000);
+  }
+
   return isValid;
 }
