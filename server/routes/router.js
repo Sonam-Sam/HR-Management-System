@@ -76,6 +76,13 @@ router.get("/profile", isAuthenticatedUser, controller.profile);
 // Login
 router.post('/login', controller.login);
 
+// Delete User
+router.post('/delete/:id', isAuthenticatedUser, controller.delete);
+
+// Update/Edit User
+router.post('/update_user/:id', isAuthenticatedUser && requireSuperAdmin, controller.update_user);
+
+
 // API
 router.post('/api/users', controller.register);
 router.get('/api/users', controller.find);

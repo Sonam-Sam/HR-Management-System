@@ -34,7 +34,7 @@ exports.register = async (req, res) => {
         // Save user to the database
         const user = await Userdb.register(newUser, req.body.password);
 
-        req.flash("success_msg", "Registration successful!");
+        req.flash("success_msg", "You have successfully registered to HR Management System!");
         res.redirect("/login");
     } catch (err) {
         console.log(err.message);
@@ -168,3 +168,42 @@ exports.profile = async (req, res) => {
       res.redirect("/profile");
     }
   };
+
+// delete controller
+exports.delete = async (req, res) => {
+    try {
+  
+      const deleteUser = await Userdb.findByIdAndDelete(req.params.id);
+      if (!deleteUser) {
+        req.flash("error_msg", "User not found!");
+        return res.redirect("/admindash");
+      }
+  
+      req.flash("success_msg", "User deleted successfully!");
+      res.redirect("/admindash");
+  
+    } catch (err) {
+      req.flash("error_msg", `Error deleting users: ${err}`);
+      res.redirect("/admindash");
+    }
+}
+
+// Update Users Details
+exports.update_user = async (req, res) => {
+    let id = req.params.id;
+    try {
+        const result = await Userdb.findByIdAndUpdate(id, {
+            name: req.body.name,
+            gender: req.body.gender,
+            dob: req.body.dob,
+            designation: req.body.designation,
+            department: req.body.department,
+            appointmentdate: req.body.appointmentdate,
+        });
+        req.flash("success_msg", "User updated successfully!");
+        res.redirect("/admindash");
+    } catch (err) {
+        req.flash("error_msg", "Occur error while updating the users details.");
+        res.redirect("/admindash");
+    }
+}

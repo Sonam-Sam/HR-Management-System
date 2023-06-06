@@ -9,17 +9,16 @@ exports.addUser = (req, res) => {
 };
 
 exports.admindash = (req, res) => {
-    // Make a get request to /api/users
-    axios.get('http://localhost:3000/api/users', { params : { role : { $ne: 'admin' }}})
-        .then(function(response){
-            res.render('admindash', {
-                users : response.data
-            })
-        })
-        .catch(err => {
-            res.send(err)
-        })
+    axios.get('http://localhost:3000/api/users')
+      .then(function(response) {
+        const users = response.data.filter(user => user.role !== 'admin');
+        res.render('admindash', { users });
+      })
+      .catch(err => {
+        res.send(err);
+      });
 };
+  
 
 exports.userdash = (req, res) => {
     // Make a get request to /api/users
