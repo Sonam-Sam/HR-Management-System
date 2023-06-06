@@ -1,4 +1,3 @@
-// Function to validate the form
 function validateForm() {
   // Get form inputs
   var name = document.getElementById("name");
@@ -63,28 +62,28 @@ function validateForm() {
 
   if (dob.value === "") {
     dob.style.borderColor = "red";
-    document.getElementById("dob-error").textContent = "Please select DoB.";
+    document.getElementById("dob-error").textContent = "Please select your date of birth.";
     isValid = false;
   }
 
   if (designation.value === "") {
-    contact.style.borderColor = "red";
+    designation.style.borderColor = "red";
     document.getElementById("designation-error").textContent =
-      "Please enter your Designation.";
+      "Please enter your designation.";
     isValid = false;
   }
 
   if (department.value === "") {
-    contact.style.borderColor = "red";
-    document.getElementById("designation-error").textContent =
-      "Please enter your Department.";
+    department.style.borderColor = "red";
+    document.getElementById("department-error").textContent =
+      "Please enter your department.";
     isValid = false;
   }
 
   if (appointmentdate.value === "") {
-    contact.style.borderColor = "red";
+    appointmentdate.style.borderColor = "red";
     document.getElementById("appointmentdate-error").textContent =
-      "Please select your Appointment Date.";
+      "Please select your appointment date.";
     isValid = false;
   }
 
@@ -96,7 +95,7 @@ function validateForm() {
   } else if (password.value.length < 8) {
     password.style.borderColor = "red";
     document.getElementById("password-error").textContent =
-      "Password must be more than 8 characters.";
+      "Password must be at least 8 characters long.";
     isValid = false;
   } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password.value)) {
     password.style.borderColor = "red";
@@ -109,4 +108,6 @@ function validateForm() {
       "Password must contain at least one uppercase letter.";
     isValid = false;
   }
+
+  return isValid;
 }

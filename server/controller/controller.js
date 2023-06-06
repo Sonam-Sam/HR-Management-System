@@ -38,8 +38,8 @@ exports.register = async (req, res) => {
         res.redirect("/login");
     } catch (err) {
         console.log(err.message);
-        req.flash("error_msg", "Error occurred while registering the user!");
-        res.redirect("/register");
+        // req.flash("error_msg", "Error occurred while registering the user!");
+        // res.redirect("/register");
     }
 };
 
