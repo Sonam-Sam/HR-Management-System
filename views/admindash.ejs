@@ -1,0 +1,109 @@
+<!-- Include header -->
+<%- include('partials/header') -%>
+
+<!-- Bills -->
+<div class="d-sm-flex justify-content-between align-items-center ml-4">
+  <h3 class="text-dark mb-4" style="font-family: Roboto, sans-serif; margin-left: 22px; margin-top: 20px; font-weight: bold;">
+    TEAM
+  </h3>
+</div>
+
+<div class="container-fluid">
+  <%- include('partials/messages') -%> 
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="d-flex flex-column align-items-left ml-4">
+        <h3 class="text-dark" style="font-family: Roboto, sans-serif; font-size: 18px; font-weight: bold;">
+          Filter the user by its Gender:
+        </h3>
+        
+        <!-- Gender filter checklist -->
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="maleCheck" value="male">
+          <label class="form-check-label" for="maleCheck">
+            Male
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="femaleCheck" value="female">
+          <label class="form-check-label" for="femaleCheck">
+            Female
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="checkbox" id="allCheck" value="all" checked>
+          <label class="form-check-label" for="allCheck">
+            All
+          </label>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-6">
+      <div class="d-flex flex-column align-items-right">
+        <h3 class="text-dark mb-4" style="font-family: Roboto, sans-serif; font-size: 18px; font-weight: bold;">
+          Sort the user by Name:
+        </h3>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Sort Order
+          </button>
+          <div class="dropdown-menu" aria-labelledby="sortDropdown">
+            <a class="dropdown-item" href="#" onclick="sortUsers('asc')">A-Z</a>
+            <a class="dropdown-item" href="#" onclick="sortUsers('desc')">Z-A</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <div class="card-body">
+    <h3 class="text-dark mb-4" style="font-family: Roboto, sans-serif; font-size: 18px; font-weight: bold;">
+      Employee Information
+    </h3>
+    <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">   
+      <% if(users != '') { %>
+        <table class="table dataTable my-0" id="dataTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Employee ID</th>
+              <th>Gender</th>
+              <th>Date of Birth</th>
+              <th>Designation</th>
+              <th>Department</th>
+              <th>Appointment Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% users.forEach((user, index) => { %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.employeeid %></td>
+                <td><%= user.gender %></td>
+                <td><%= user.dob %></td>
+                <td><%= user.designation %></td>
+                <td><%= user.department %></td>
+                <td><%= user.appointmentdate %></td>
+                <td> 
+                  <a href="/update_user?id=<%= user._id %>"><i class="fas fa-edit"></i></a>
+                  <a class="delete" data-id=<%= user._id %>><i class="fas fa-trash"></i></a>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+        
+      <% } else { %>
+        <h1>Users not found in the Database.</h1>
+      <% } %>
+    </div>
+  </div>
+</div>
+
+<!-- Include footer -->
+<%- include('partials/footer') -%>
+

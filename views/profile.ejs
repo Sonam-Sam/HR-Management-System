@@ -1,0 +1,38 @@
+<%- include('partials/header') -%>
+
+<body id="page-top">
+    <div class="container">
+    <h4 class="my-4" style="color: #004AAD;"><strong>Profile</strong></h4>
+    <% users.forEach(user => { %>
+    <%- include('partials/messages') -%>
+    <div class="row">
+        <div class="col-md-5 mb-4">
+            <div class="card h-100">
+                <div class="card-body" style="background-color: #ECF6FF;">
+                    <img class="rounded-circle profile-pic" src="/img/default_user.png">
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong><%= buser.gender === 'Male' ? 'Mr.' : 'Mrs.' %> <%= buser.name %></strong></h1>
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Digital Kidu Team</strong></h1><br><br>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 mb-4">
+            <div class="card h-100">
+                <div class="card-body" style="background-color: #ECF6FF;">
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Name: </strong><br><%= buser.name %></h1><br>
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Emp ID: </strong><br><%= buser.employeeid %></h1><br>
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Gender: </strong><br><%= buser.gender %></h1><br> 
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Designation: </strong><br><%=buser.designation %></h1><br> 
+                    <h1 class="text-center" style="font-size: 16px; color: #000000;"><strong>Department: </strong><br><%= buser.department%></h1>  
+                </div>
+            </div>
+        </div>
+    </div>
+    <% }); %>
+</div>
+
+<%- include('partials/footer') -%>
+</body>
+
+
+

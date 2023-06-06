@@ -1,0 +1,45 @@
+<!-- Include header -->
+<%- include('partials/header') -%>
+<br>
+<div class="container-fluid">
+  <%- include('partials/messages') -%> 
+      <div class="card-body">
+        <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">   
+          <% if(users != '') { %>
+            <table class="table dataTable my-0" id="dataTable">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Employee ID</th>
+                    <th>Gender</th>
+                    <th>Date of Birth</th>
+                    <th>Designation</th>
+                    <th>Department</th>
+                    <th>Appointment Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% users.forEach((user, index) => { %>
+                  <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.employeeid %></td>
+                    <td><%= user.gender %></td>
+                    <td><%= user.dob %></td>
+                    <td><%= user.designation %></td>
+                    <td><%= user.department %></td>
+                    <td><%= user.appointmentdate %></td>
+                  </tr>
+                  <% }) %>
+                </tbody>
+            </table>
+            <% } else { %>
+              <h1>Users not found in the Database.</h1>
+            <% } %>
+  
+        </div>
+      </div>
+  </div>
+   
+<!-- Include footer -->
+<%- include('partials/footer') -%>
+
